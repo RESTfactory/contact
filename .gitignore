@@ -89,3 +89,9 @@ ENV/
 .ropeproject
 
 */settings_secret.py
+
+# Databases
+*.sqlite*
+
+# Django migrations
+*/migrations/*
