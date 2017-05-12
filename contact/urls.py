@@ -14,7 +14,20 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework import routers
+from .views import (
+    ContactCreatorViewSet,
+    ContactTypeViewSet,
+    ContactInfoViewSet
+)
+
+
+router = routers.DefaultRouter()
+router.register(r'creators', ContactCreatorViewSet)
+router.register(r'types', ContactTypeViewSet)
+router.register(r'contacts', ContactInfoViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(router.urls)),
 ]

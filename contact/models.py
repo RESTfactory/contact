@@ -4,8 +4,8 @@ from django.db import models
 
 class ContactCreator(models.Model):
     name = models.CharField(max_length=100)
-    contact_name = models.CharField(max_length=100, required=False)
-    contact_cellphone = models.CharField(max_length=15, required=False)
+    contact_name = models.CharField(max_length=100, null=True)
+    contact_cellphone = models.CharField(max_length=15, null=True)
     contact_email = models.CharField(max_length=254)
     description = models.CharField(max_length=100)
 
@@ -23,8 +23,8 @@ class ContactType(models.Model):
 
 class ContactInfo(models.Model):
     name = models.CharField(max_length=100)
-    contact_name = models.CharField(max_length=100, required=False)
-    contact_cellphone = models.CharField(max_length=15, required=False)
+    contact_name = models.CharField(max_length=100, null=True)
+    contact_cellphone = models.CharField(max_length=15, null=True)
     contact_email = models.CharField(max_length=254)
     creator = models.ForeignKey(ContactCreator)
     contact_type = models.ForeignKey(ContactType)
