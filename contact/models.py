@@ -23,7 +23,7 @@ class ContactCreator(models.Model):
 
 class ContactType(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100, blank=True, null=True)
     organizational_unit = models.ForeignKey(OrganizationalUnit)
 
     def __str__(self):
@@ -35,7 +35,7 @@ class ContactInfo(models.Model):
     contact_name = models.CharField(max_length=100, null=True)
     contact_cellphone = models.CharField(max_length=15, null=True)
     contact_email = models.CharField(max_length=254)
-    creator = models.ForeignKey(ContactCreator)
+    creator = models.ForeignKey(ContactCreator, blank=True, null=True)
     contact_type = models.ForeignKey(ContactType)
     organizational_unit = models.ForeignKey(OrganizationalUnit)
 
