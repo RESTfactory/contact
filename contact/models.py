@@ -37,7 +37,6 @@ class ContactInfo(models.Model):
     contact_email = models.CharField(max_length=254)
     creator = models.ForeignKey(ContactCreator, blank=True, null=True)
     contact_type = models.ForeignKey(ContactType)
-    organizational_unit = models.ForeignKey(OrganizationalUnit)
 
     def __str__(self):
         return self.name
