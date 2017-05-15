@@ -32,6 +32,9 @@ class ContactType(models.Model):
 
 class ContactInfo(models.Model):
     content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     contact_name = models.CharField(max_length=100, null=True)
     contact_cellphone = models.CharField(max_length=15, null=True)
     contact_email = models.CharField(max_length=254)
@@ -39,4 +42,4 @@ class ContactInfo(models.Model):
     contact_type = models.ForeignKey(ContactType)
 
     def __str__(self):
-        return self.name
+        return str(self.contact_email)+" - "+str(self.created_at)
