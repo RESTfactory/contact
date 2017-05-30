@@ -23,7 +23,7 @@ class ContactCreator(models.Model):
         unique_together = ("contact_email", "app")
 
     def __str__(self):
-        return self.name
+        return self.contact_email
 
 
 class ContactType(models.Model):
