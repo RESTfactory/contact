@@ -1,10 +1,15 @@
 """Contact models."""
 from django.db import models
+from django.db.models.signals import (
+    pre_save,
+    post_save
+)
 from companies.models import (
     App,
     OrganizationalUnitType,
     OrganizationalUnit
 )
+
 
 class ContactCreator(models.Model):
     name = models.CharField(max_length=100)
@@ -43,3 +48,23 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return str(self.contact_email)+" - "+str(self.created_at)
+
+
+def creating_contact(sender, **kwargs):
+    # Do something
+    print("#"*30)
+    print("creating_contact")
+    print("#"*30)
+    pass
+
+
+def contact_created(sender, **kwargs):
+    # Do something
+    print("#"*30)
+    print("contact_created")
+    print("#"*30)
+    pass
+
+
+pre_save.connect(creating_contact, sender=ContactInfo)
+post_save.connect(contact_created, sender=ContactInfo)
