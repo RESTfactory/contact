@@ -50,21 +50,19 @@ class ContactInfo(models.Model):
         return str(self.contact_email)+" - "+str(self.created_at)
 
 
-def creating_contact(sender, **kwargs):
-    # Do something
-    print("#"*30)
-    print("creating_contact")
-    print("#"*30)
-    pass
+def update_contact(sender, instance, **kwargs):
+    creator, creating = ContactCreator.objects.get_or_create(contact_email=instance.contact_email, app=App.objects.get(pk=1))
+    creator.contact_name = instance.contact_name
+    creator.contact_cellphone = instance.contact_cellphone
+    creator.save()
 
 
-def contact_created(sender, **kwargs):
-    # Do something
+def send_notification(sender, instance, **kwargs):
     print("#"*30)
     print("contact_created")
     print("#"*30)
     pass
 
 
-pre_save.connect(creating_contact, sender=ContactInfo)
-post_save.connect(contact_created, sender=ContactInfo)
+pre_save.connect(update_contact, sender=ContactInfo)
+post_save.connect(send_notification, sender=ContactInfo)
