@@ -1,4 +1,5 @@
 """Contact models."""
+from django.conf import settings
 from django.core.mail import send_mail
 from django.db import models
 from django.db.models.signals import (
@@ -62,11 +63,10 @@ def send_notification(sender, instance, **kwargs):
     send_mail(
         'New contact created',
         'A new contact has been created by a user.',
-        'fromemail@yourcompany.com',
+        settings.EMAIL_DEFAULT_FROM_EMAIL,
         ['toemail@yourclient.com'],
         fail_silently=False,
     )
-    pass
 
 
 pre_save.connect(update_contact, sender=ContactInfo)
