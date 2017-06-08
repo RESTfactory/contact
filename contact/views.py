@@ -1,4 +1,6 @@
+"""Contact views."""
 from rest_framework import viewsets
+from companies.permissions import HasApiKeyPermission
 from .models import (
     ContactCreator,
     ContactType,
@@ -24,3 +26,5 @@ class ContactTypeViewSet(viewsets.ModelViewSet):
 class ContactInfoViewSet(viewsets.ModelViewSet):
     queryset = ContactInfo.objects.all()
     serializer_class = ContactInfoSerializer
+    permission_classes = [HasApiKeyPermission]
+    authentication_classes = []
