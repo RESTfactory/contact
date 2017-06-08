@@ -1,7 +1,10 @@
 """API Control permissions."""
 from __future__ import unicode_literals
+from logging import getLogger
 from rest_framework.permissions import BasePermission
 from .models import App
+
+logger = getLogger(__name__)
 
 
 class HasApiKeyPermission(BasePermission):
@@ -19,4 +22,5 @@ class HasApiKeyPermission(BasePermission):
                 return True
 
         except Exception as e:
+            logger.error(e)
             return False
