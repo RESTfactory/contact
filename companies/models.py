@@ -2,6 +2,18 @@
 from django.db import models
 
 
+class Responsible(models.Model):
+    """Responsible: person who manage an app or group."""
+
+    name = models.CharField(max_length=30, blank=True, null=True)
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.email
+
+
 class App(models.Model):
     """App model: One Instance per Client(business or App) that connects."""
 
