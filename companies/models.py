@@ -49,6 +49,7 @@ class OrganizationalUnit(models.Model):
     unit_type = models.ForeignKey(OrganizationalUnitType, related_name="units")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    responsibles = models.ManyToManyField(Responsible)
 
     def __str__(self):
         return self.name
