@@ -60,11 +60,15 @@ def update_contact(sender, instance, **kwargs):
 
 
 def send_notification(sender, instance, **kwargs):
+    """Send the email notification to organizational_unit responsibles."""
+    responsibles = instance.contact_type.organizational_unit.responsibles.all()
+    responsibles_email_list = responsibles.values_list('email', flat=True)
+
     send_mail(
         'New contact created',
-        'A new contact has been created by a user.',
+        'A new contact has been created by an user.',
         settings.EMAIL_DEFAULT_FROM_EMAIL,
-        ['toemail@yourclient.com'],
+        responsibles_email_list,
         fail_silently=False,
     )
 
