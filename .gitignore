@@ -95,3 +95,5 @@ ENV/
 
 # Django migrations
 */migrations/*
+
+rest_framework_apicontrol
