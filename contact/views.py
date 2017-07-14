@@ -1,6 +1,6 @@
 """Contact views."""
 from rest_framework import viewsets
-from companies.permissions import HasApiKeyPermission
+from rest_framework_apicontrol.permissions import HasApiKeyPermission
 from .models import (
     ContactCreator,
     ContactType,

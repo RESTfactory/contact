@@ -6,7 +6,7 @@ from django.db.models.signals import (
     pre_save,
     post_save
 )
-from companies.models import (
+from rest_framework_apicontrol.models import (
     App,
     OrganizationalUnitType,
     OrganizationalUnit
